@@ -1,4 +1,5 @@
-﻿Console.Clear();
+﻿//Сравнение двух чисел
+Console.Clear();
 Console.Write("Введите первое число: ");
 int numb_1 = int.Parse(Console.ReadLine());
 Console.Write("Введите второе число: ");
