@@ -39,14 +39,6 @@ Console.WriteLine("Enter coordinates X, Y of the Second Point:");
 double x2 = EnterNumber();
 double y2 = EnterNumber();
 
-Console.WriteLine(Diff(x1, x2)); //checking for difference
-Console.WriteLine(Diff(y1, y2));
-
-Console.WriteLine(SquareNumber(Diff(x1, x2)));  //checking for square
-Console.WriteLine(SquareNumber(Diff(y1, y2)));
-
-Console.WriteLine(Sum2(SquareNumber(Diff(x1, x2)), SquareNumber(Diff(y1, y2))));  //checking for sum
-
 Console.Write($"Distance between Points: A({x1}, {y1}) and B({x2}, {y2}) is ");
 Console.WriteLine(DistanceBetweenPoints(Sum2(SquareNumber(Diff(x1, x2)), SquareNumber(Diff(y1, y2)))));
 
