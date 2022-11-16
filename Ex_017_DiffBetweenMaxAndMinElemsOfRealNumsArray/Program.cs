@@ -7,7 +7,7 @@ Console.Clear();
 double[] GetArrayOfRealNumbers()
 {
     Console.Write("Input size of array: ");
-    int size = int.Parse(Console.ReadLine());
+    int size = int.Parse(Console.ReadLine() ?? "0");
 
     double[] array = new double[size];
 
