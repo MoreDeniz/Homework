@@ -10,23 +10,6 @@
 
 Console.Clear();
 
-int InputNumber(string message)
-{
-    while (true)
-    {
-        Console.Write(message);
-        bool result = int.TryParse(Console.ReadLine() ?? "0", out var number);
-        if (!result)
-        {
-            Console.WriteLine($"Некорректный ввод! ");
-            Thread.Sleep(1500);
-
-            continue;
-        }
-        return number;
-    }
-}
-
 int[,] GetMatrix()
 {
     int rows = new Random().Next(2, 10);
@@ -38,27 +21,55 @@ int[,] GetMatrix()
         for (int j = 0; j < columns; j++)
         {
             matrix[i, j] = new Random().Next(0, 10);
-            Console.Write($"{matrix[i, j]} ");
         }
         Console.WriteLine();
     }
     return matrix;
 }
 
-bool CheckPosition(int row, int column)
+void PrintMatrix(int[,] matrix)
 {
-    int[,] matrix = GetMatrix();
-    bool result = false;
-    if (row < matrix.GetLength(0) && column < matrix.GetLength(1))
+    for (int i = 0; i < matrix.GetLength(0); i++)
     {
-        result = true;
-        Console.Write($"Значение элемента: {matrix[row, column]}");
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            Console.Write($"{matrix[i, j]} ");
+        }
+        Console.WriteLine();
     }
+}
+
+int InputNumber(string message)
+{
+    while (true)
+    {
+        Console.Write(message);
+        bool result = int.TryParse(Console.ReadLine() ?? "0", out int number);
+        if (!result || number <= 0)
+        {
+            Console.WriteLine($"Некорректный ввод! ");
+            Thread.Sleep(1500);
+
+            continue;
+        }
+        return number;
+    }
+}
+
+bool CheckPosition(int[,] matrix, int row, int column)
+{
+    bool result = row - 1 <= matrix.GetLength(0) && column - 1 <= matrix.GetLength(1);
 
     return result;
 }
 
-int m = InputNumber($"Введите m: ");
-int n = InputNumber($"Введите n: ");
+int[,] arr = GetMatrix();
+PrintMatrix(arr);
 Console.WriteLine();
-Console.WriteLine(CheckPosition(m, n) ? "" : "Такого числа в массиве нет");
+
+int m = InputNumber($"Введите номер ряда, отсчёт начинается с 1:    ");
+int n = InputNumber($"Введите номер столбца, отсчёт начинается с 1: ");
+Console.WriteLine();
+
+Console.WriteLine(CheckPosition(arr, m, n)
+? $"Значение элемента {arr[m - 1, n - 1]}" : "Такого числа в массиве нет");
